@@ -19,6 +19,6 @@ export class BookRatingService {
     return {
       ...book,
       rating: Math.max(1, book.rating - 1)
-    };
+    }
   }
 }
