@@ -50,4 +50,13 @@ describe('BookComponent', () => {
     // Assert
     expect(emittedBook).toBe(component.book);
   });
+
+  it('should call method for btn click', () => {
+    const rateUpBtn = fixture.debugElement.nativeElement.querySelector('[data-testid="rateUpBtn"]');
+    spyOn(component, 'doRateUp');
+
+    rateUpBtn.click();
+
+    expect(component.doRateUp).toHaveBeenCalled();
+  });
 });
