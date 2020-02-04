@@ -5,6 +5,7 @@ import { BookRatingService } from '../shared/book-rating.service';
 import { Book } from '../shared/book';
 import { BookComponent } from '../book/book.component';
 import { CardComponent } from 'src/app/widget/card/card.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -19,11 +20,12 @@ describe('DashboardComponent', () => {
     };
 
     TestBed.configureTestingModule({
-      declarations: [ DashboardComponent, BookComponent, CardComponent ],
+      declarations: [ DashboardComponent ],
       providers: [
         // wann immer jemand BRS anfordert, wird ratingMock ausgeliefert
         { provide: BookRatingService, useValue: ratingMock }
-      ]
+      ],
+      schemas: [NO_ERRORS_SCHEMA] // von @angular/core (!)
     })
     .compileComponents();
 
@@ -46,7 +48,7 @@ describe('DashboardComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('should call service for rateUp()', () => {
+  it('should call service for rateUp()', () => {
     // Arrange
     const rs = TestBed.get(BookRatingService);
 
