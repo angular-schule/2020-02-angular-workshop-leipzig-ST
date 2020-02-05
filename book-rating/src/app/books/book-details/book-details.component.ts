@@ -23,6 +23,8 @@ export class BookDetailsComponent implements OnInit {
         const isbn = params.get('isbn');
         this.bs.getSingle(isbn).subscribe(book => this.book = book);
       });
+
+    this.route.data.subscribe(console.log)
   }
 
 }
