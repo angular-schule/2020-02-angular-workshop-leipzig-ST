@@ -16,9 +16,15 @@ export class BookStoreService {
     return this.http.get<Book[]>(`${this.apiUrl}/books`);
   }
 
-  getSingle(isbn: string) {}
+  getSingle(isbn: string) {
+    return this.http.get<Book>(`${this.apiUrl}/book/${isbn}`);
+  }
 
-  create(book: Book) {}
+  create(book: Book) {
+    return this.http.post(`${this.apiUrl}/book`, book, { responseType: 'text' });
+  }
 
-  search(term: string) {}
+  search(term: string) {
+    return this.http.get<Book[]>(`${this.apiUrl}/books/search/${term}`);
+  }
 }
