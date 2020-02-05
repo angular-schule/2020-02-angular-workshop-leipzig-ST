@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'br-search',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
+  searchForm: FormGroup;
+
   constructor() { }
 
   ngOnInit() {
+    this.searchForm = new FormGroup({
+      search: new FormControl('')
+    });
+
+    this.searchForm.get('search').valueChanges
+      .subscribe(e => console.log(e));
   }
 
 }

@@ -1,1 +1,42 @@
-<button type="button" (click)="submitForm()">Test</button>
+<form [formGroup]="bookForm" (ngSubmit)="submitForm()">
+
+  <div class="form-group">
+    <label>ISBN</label>
+    <input class="form-control" type="text" formControlName="isbn">
+    <div class="feedback-error" *ngIf="isInvalid('isbn')">Die ISBN ist ungültig.</div>
+    <div class="feedback-error" *ngIf="hasError('isbn', 'required')">Die ISBN ist erforderlich.</div>
+    <div class="feedback-error" *ngIf="hasError('isbn', 'minlength')">Die ISBN ist zu kurz.</div>
+  </div>
+
+  <div class="form-group">
+    <label>Titel</label>
+    <input class="form-control" type="text" formControlName="title">
+  </div>
+
+  <div class="form-group">
+    <label>Beschreibung</label>
+    <textarea class="form-control" formControlName="description"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label>Preis</label>
+    <input class="form-control" type="number" formControlName="price">
+  </div>
+
+<button type="submit" class="btn"
+    [ngClass]="{ 'btn-danger': bookForm.invalid, 'btn-success': bookForm.valid }"
+    [disabled]="bookForm.invalid">Abschicken</button>
+
+<!--
+  Alternative:
+  [class.btn-danger]="bookForm.invalid"
+    [class.btn-success]="bookForm.valid"
+-->
+
+</form>
+
+
+<pre>
+{{ bookForm.value | json }}
+</pre>
+
