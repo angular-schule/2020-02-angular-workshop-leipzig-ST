@@ -4,6 +4,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { BarComponent } from './bar/bar.component';
 import { FooComponent } from './foo/foo.component';
+import { SearchComponent } from './search/search.component';
+import { CreateBookComponent } from './create-book/create-book.component';
 
 
 const routes: Routes = [
@@ -11,6 +13,9 @@ const routes: Routes = [
     { path: 'foo', component: FooComponent },
     { path: 'bar', component: BarComponent },
   ] },
+
+  { path: 'books/search', component: SearchComponent },
+  { path: 'books/create', component: CreateBookComponent },
   {
     path: 'books/:isbn',
     component: BookDetailsComponent,
@@ -19,6 +24,7 @@ const routes: Routes = [
       title: 'Leipzig'
     }
   },
+
 ];
 
 @NgModule({

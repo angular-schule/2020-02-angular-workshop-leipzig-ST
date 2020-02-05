@@ -1,5 +1,11 @@
 <div class="container">
   <h1>{{ title }}</h1>
 
+  <div>
+    <a routerLink="/books" class="mr-5" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Dashboard</a>
+    <a routerLink="/books/search" class="mr-5" routerLinkActive="active">Suche</a>
+    <a routerLink="/books/create" class="mr-5" routerLinkActive="active">Erstellen</a>
+  </div>
+
   <router-outlet></router-outlet>
 </div>
