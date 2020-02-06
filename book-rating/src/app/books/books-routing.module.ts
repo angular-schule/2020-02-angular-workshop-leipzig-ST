@@ -6,6 +6,7 @@ import { BarComponent } from './bar/bar.component';
 import { FooComponent } from './foo/foo.component';
 import { SearchComponent } from './search/search.component';
 import { CreateBookComponent } from './create-book/create-book.component';
+import { CounterComponent } from './counter/counter.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
 
   { path: 'books/search', component: SearchComponent },
   { path: 'books/create', component: CreateBookComponent },
+  { path: 'books/counter', component: CounterComponent },
   {
     path: 'books/:isbn',
     component: BookDetailsComponent,

@@ -13,6 +13,7 @@ import { BarComponent } from './bar/bar.component';
 import { SearchComponent } from './search/search.component';
 import { CreateBookComponent } from './create-book/create-book.component';
 import { BookFormComponent } from './book-form/book-form.component';
+import { CounterComponent } from './counter/counter.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { BookFormComponent } from './book-form/book-form.component';
     BarComponent,
     SearchComponent,
     CreateBookComponent,
-    BookFormComponent
+    BookFormComponent,
+    CounterComponent
   ],
   imports: [
     CommonModule,
