@@ -12,6 +12,15 @@ export class FromeventComponent implements OnInit {
 
   ngOnInit() {
 
+    const debouncedEvents = fromEvent(window, 'resize').pipe(
+      debounceTime(1000)
+    );
+
+    debouncedEvents.pipe(
+      startWith('hallo'),
+      map(() => window.innerWidth),
+    ).subscribe(width => this.currentWidth = width);
+
   }
 
 }

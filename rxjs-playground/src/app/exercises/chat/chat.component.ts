@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject, merge, concat, race, forkJoin } from 'rxjs';
+import { Subject, merge, concat, race, forkJoin, of, Observable, throwError, combineLatest, zip } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -28,7 +28,19 @@ export class ChatComponent implements OnInit {
      * - concat (Emit values from source 1, when complete, subscribe to source 2...)
      * - race (The observable to emit first is used.)
      * - forkJoin (When all observables complete, emit the last emitted value from each.)
+     * - combineLatest
+     * - zip
      */
+
+    zip(
+      this.msg.julia$.pipe(map(msg => '🙎🏻‍♀️ JULIA: ' + msg)),
+      this.msg.georg$.pipe(map(msg => '👨🏻‍🔬 GEORG: ' + msg)),
+      this.msg.john$.pipe(map(msg => '👨🏻‍🎓 JOHN: ' + msg)),
+    ).subscribe(
+      msg => this.log(msg),
+      msg => this.log('FEHLER: ' + msg),
+      () => this.log('All members left')
+    );
 
 
 
@@ -37,5 +49,12 @@ export class ChatComponent implements OnInit {
 
   private log(msg: any) {
     this.logStream$.next(msg.toString());
+  }
+}
+
+
+function myStartWith(value) {
+  return function (source$: Observable<any>) {
+    return concat(of(value), source$);
   }
 }
