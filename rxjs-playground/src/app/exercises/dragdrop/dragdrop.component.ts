@@ -13,13 +13,15 @@ export class DragdropComponent implements OnInit {
   @ViewChild('target', { static: true }) target;
 
   ngOnInit() {
-    const mouseMove$ = fromEvent(document, 'mousemove');
+    const mouseMove$ = fromEvent<MouseEvent>(document, 'mousemove');
     const mouseDown$ = fromEvent(this.target.nativeElement, 'mousedown');
     const mouseUp$ = fromEvent(document, 'mouseup');
 
     /******************************/
 
-
+    mouseDown$.pipe(
+      concatMap(() => mouseMove$.pipe(takeUntil(mouseUp$))),
+    ).subscribe(e => this.setTargetPosition(e));
 
     /******************************/
   }
