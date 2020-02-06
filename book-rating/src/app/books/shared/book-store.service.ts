@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Book } from './book';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +25,9 @@ export class BookStoreService {
   }
 
   search(term: string) {
+    if (!term) {
+      return of([]);
+    }
     return this.http.get<Book[]>(`${this.apiUrl}/books/search/${term}`);
   }
 }

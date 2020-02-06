@@ -1,3 +1,10 @@
 <form [formGroup]="searchForm" class="mt-5">
   <input type="text" class="form-control form-control-lg" formControlName="search">
 </form>
+
+<ng-container *ngIf="results$ | async as books">
+  <div *ngIf="!books.length">Keine Ergebnisse...</div>
+
+  <br-book *ngFor="let b of books" [book]="b"></br-book>
+</ng-container>
+
